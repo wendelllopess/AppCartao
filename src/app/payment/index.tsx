@@ -4,6 +4,7 @@ import {styles} from "./styles"
 import { useSharedValue } from "react-native-reanimated";
 import { Input } from "@/components/input";
 import { useState } from "react";
+import { AntDesign } from '@expo/vector-icons';
 
 export function Payment(){
     const [nome, setNome] = useState("")   
@@ -42,7 +43,8 @@ export function Payment(){
             }}/>
 
         <TouchableOpacity style={styles.button} onPress={handleFlipCard}>
-          <Text style={styles.textButton}>Inverter</Text>
+          <Text style={styles.textButton}>Virar cartão</Text>
+          <AntDesign name="retweet" size={24} color="black" />
         </TouchableOpacity>
 
         <View style={styles.form}>

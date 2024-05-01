@@ -4,10 +4,14 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 32,
+    marginVertical: 60
   },
   button: {
     alignItems: "center",
     marginVertical: 40,
+    flexDirection: "row",
+    gap: 12,
+    justifyContent: "center"
   },
   textButton: {
     fontSize: 22,
