@@ -1,5 +1,5 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { CreditCard, CARD_SIDE } from '@/components/credit-card'
+import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import { CreditCard, CARD_SIDE } from '@/components/cartao'
 import {styles} from "./styles"
 import { useSharedValue } from "react-native-reanimated";
 import { Input } from "@/components/input";
@@ -34,6 +34,9 @@ export function Payment(){
 
 
     return (
+      <ImageBackground source={require("../../../assets/fundoApp.jpg")} style={{flex: 1}}>
+
+      
       <View style={styles.container}>
         <CreditCard cardSide={cardSide} data ={{
             nome, 
@@ -44,7 +47,7 @@ export function Payment(){
 
         <TouchableOpacity style={styles.button} onPress={handleFlipCard}>
           <Text style={styles.textButton}>Virar cartão</Text>
-          <AntDesign name="retweet" size={24} color="black" />
+          <AntDesign name="retweet" size={24} color="#FFFF" />
         </TouchableOpacity>
 
         <View style={styles.form}>
@@ -69,5 +72,6 @@ export function Payment(){
           </View>
         </View>
       </View>
+      </ImageBackground>
     );
 }

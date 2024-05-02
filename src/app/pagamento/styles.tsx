@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 32,
-    marginVertical: 60
+    marginVertical: 30
   },
   button: {
     alignItems: "center",
@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
   },
   textButton: {
     fontSize: 22,
+    color: "#FFFF"
   },
   form: {
     gap:12
