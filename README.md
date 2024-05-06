@@ -9,6 +9,11 @@
   
 </p>
 
+![cartao tras](https://github.com/wendelllopess/AppCartao/assets/116606137/cfe4a7d9-81d7-444a-ba11-22f0571cf4ed)
+![cartao tras preenchido ](https://github.com/wendelllopess/AppCartao/assets/116606137/12533826-00c1-4636-bfa5-ddc81c3ca3f1)
+![cartao frente preenchido](https://github.com/wendelllopess/AppCartao/assets/116606137/7090d670-3cb7-4a9b-9bfb-33bed29053fe)
+![Cartao Frente ](https://github.com/wendelllopess/AppCartao/assets/116606137/9c0419da-861f-45bc-bd34-47d89ff31288)
+
 <br>
 
 ## 🚀 Tecnologias
