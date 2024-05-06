@@ -1,7 +1,7 @@
 <h1 align="center">App Cartao de credito</h1>
 
 <p align="center">
-   Criação de um tela de aplicativo de cartao de credito, para que o usuario possa inserir as informacoes e ser gerado um cartao virtual.
+  Criação de uma tela de aplicativo de cartão de crédito, onde o usuário pode inserir as informações e um cartão virtual será gerado.
 </p>
 <p align="center">
   <a href="#=tecnologias">Tecnologias</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -28,6 +28,5 @@ Esse projeto foi desenvolvido com a seguinte tecnologia:
 
 ## 💻 Projeto
 
-Esse projeto foi criado com o intuito de por em praticas novos conhecimentos com a tecnologia React-Native, e tambem pensando em ser implementado em novos projetos futuros.
-
+Este projeto foi desenvolvido com o objetivo de colocar em prática novos conhecimentos utilizando a tecnologia React Native. Além disso, visa servir como uma base sólida para futuras implementações em projetos.
 
