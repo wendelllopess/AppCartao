@@ -1,4 +1,4 @@
-<h1 align="center">APP Cartao de credito</h1>
+<h1 align="center">App Cartao de credito</h1>
 
 <p align="center">
    Criação de um tela de aplicativo de cartao de credito, para que o usuario possa inserir as informacoes e ser gerado um cartao virtual.
