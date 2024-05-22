@@ -1,77 +1,85 @@
-import { ImageBackground, Text, TouchableOpacity, View } from "react-native";
-import { CreditCard, CARD_SIDE } from '@/components/cartao'
-import {styles} from "./styles"
-import { useSharedValue } from "react-native-reanimated";
-import { Input } from "@/components/input";
-import { useState } from "react";
-import { AntDesign } from '@expo/vector-icons';
+import { Text, View } from "react-native";
+import { styles } from "./styles";
+import Animated, {SharedValue, interpolate, useAnimatedStyle, withTiming} from "react-native-reanimated";
 
-export function Payment(){
-    const [nome, setNome] = useState("")   
-    const [numero, setNumero] = useState("")   
-    const [data, setData] = useState("")   
-    const [cvv, setCvv] = useState("")   
-
-
-    const cardSide = useSharedValue(CARD_SIDE.front)
-
-    function showFrontCard(){
-        cardSide.value = CARD_SIDE.front
+type CreditCardProps = {
+    cardSide: SharedValue<number>
+    data: {
+      nome: string
+      numero: string
+      data: string
+      cvv: string
     }
+}
 
-    function showbackCard(){
-        cardSide.value = CARD_SIDE.back
-    }
+export enum CARD_SIDE{
+    front = 0, 
+    back = 1,
+}
 
-    function handleFlipCard(){
-        console.log(cardSide.value)
-        if(cardSide.value === CARD_SIDE.front){
-            showbackCard()
-        }else{
-            showFrontCard()
-        }
-    }
+export function CreditCard({cardSide, data}: CreditCardProps){
+    const frontAnimetedStyles = useAnimatedStyle(() => {
+      const rotateValue = interpolate(
+        cardSide.value,
+        [CARD_SIDE.front, CARD_SIDE.back],
+        [0, 180]
+      );
+      return {
+        transform: [
+          { rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 }) },
+        ],
+      };
+    });
 
+    const backAnimetedStyles = useAnimatedStyle(() => {
+        const rotateValue = interpolate(
+          cardSide.value,
+          [CARD_SIDE.front, CARD_SIDE.back],
+          [180, 360]
+        );
+        return {
+          transform: [
+            { rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 }) },
+          ],
+        };
+      });
 
-    return (
-      <ImageBackground source={require("../../../assets/fundoApp.jpg")} style={{flex: 1}}>
+  return (
+    <View>
+      <Animated.View style={[styles.card, styles.front, frontAnimetedStyles]}>
+        <View style={styles.header}>
+          <View style={[styles.circle, styles.logo]} />
+          <Text>Meu cartao</Text>
+        </View>
 
-      
-      <View style={styles.container}>
-        <CreditCard cardSide={cardSide} data ={{
-            nome, 
-            numero: numero.replace(/(\d{4})(?=\d)/g, "$1 "), 
-            data, 
-            cvv
-            }}/>
+        <View style={styles.footer}>
+          <Text style={styles.name}>{data.nome}</Text>
 
-        <TouchableOpacity style={styles.button} onPress={handleFlipCard}>
-          <Text style={styles.textButton}>Virar cartão</Text>
-          <AntDesign name="retweet" size={24} color="#FFFF" />
-        </TouchableOpacity>
-
-        <View style={styles.form}>
-          <Input placeholder="Nome do titular" onChangeText={setNome} onFocus={showFrontCard} />
-          <Input
-            placeholder="Numero do cartao"
-            keyboardType="numeric"
-            maxLength={16}
-            onChangeText={setNumero}
-            onFocus={showbackCard}
-          />
-
-          <View style={styles.inputAdicional}>
-            <Input placeholder="01/02" style={styles.smallInput} onChangeText={setData} onFocus={showbackCard}/>
-            <Input
-              placeholder="123"
-              style={styles.smallInput}
-              keyboardType="numeric"
-              onChangeText={setCvv}
-              onFocus={showbackCard}
-            />
+          <View style={styles.flag}>
+            <View style={[styles.circle, styles.red]} />
+            <View style={[styles.circle, styles.orange]} />
           </View>
         </View>
-      </View>
-      </ImageBackground>
-    );
+      </Animated.View>
+
+      <Animated.View style = {[styles.card, styles.back, backAnimetedStyles]}>
+        <View>
+           <Text style={styles.label}>Numero do cartao</Text>
+           <Text style={styles.value}>{data.numero}</Text>
+        </View>
+
+        <View style ={styles.footer}>
+            <View>
+                <Text style={styles.label}>validade</Text>
+                <Text style={styles.value}>{data.data.substring(0, 2) / data.data.substring(numero.length - 2)}</Text>
+            </View>
+
+            <View>
+                <Text style={styles.label}>CVV</Text>
+                <Text style={styles.value}>{data.cvv}</Text>
+            </View>
+        </View>
+      </Animated.View>
+    </View>
+  );
 }
